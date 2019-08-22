@@ -3,22 +3,40 @@ mmartinello.users - Ansible Users Manager Role
 
 Ansible role which let to easily manage users and their access to Linux servers.
 
-Definitions
------------
-
+The role has some default groups which are used to manage default user permissions:
 - Super administrator: user which has complete root access (using sudo) on every hosts.
 - Administrator: user which has complete root access (using sudo) on a specified host or group of hosts.
 - Deployer: user which has access to deployer group on a specified host or group of hosts.
 
+Only Linux hosts are supported at the moment.
+
 Requirements
 ------------
 
-This role supports Linux hosts. Windows hosts are not supported.
+None.
 
 Role Variables
 --------------
 
-TODO
+```yaml
+# Superadmin group name (default: admin)
+superadmin_group: admin
+
+# Ask sudo password for superadmin users (default: true)
+superadmin_ask_pass: true
+
+# Admin group name (default: sudo)
+admin_group: sudo
+
+# Ask sudo password for admin users (default: true)
+admin_ask_pass: true
+
+# Deployer group name (default: deployer)
+deployer_group: deployer
+
+# Ask sudo password to become deployer (default: true)
+deployer_become_ask_pass: true
+```
 
 Dependencies
 ------------

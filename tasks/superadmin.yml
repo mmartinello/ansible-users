@@ -1,5 +1,11 @@
 ---
-- name: Create or remove the admin group
+- name: Create or remove the superadmin group
   group:
     name: "{{ superadmin_group }}"
     state: present
+
+- name: Configure sudo for the superadmin group
+  template:
+    src: sudoers-superadmin.j2
+    dest: /etc/sudoers.d/superadmin
+    validate: /usr/sbin/visudo -cf %s

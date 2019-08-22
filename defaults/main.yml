@@ -1,4 +1,18 @@
 ---
+# Superadmin group name (default: admin)
 superadmin_group: admin
+
+# Ask sudo password for superadmin users (default: true)
+superadmin_ask_pass: true
+
+# Admin group name (default: sudo)
 admin_group: sudo
+
+# Ask sudo password for admin users (default: true)
+admin_ask_pass: true
+
+# Deployer group name (default: deployer)
 deployer_group: deployer
+
+# Ask sudo password to become deployer (default: true)
+deployer_become_ask_pass: true

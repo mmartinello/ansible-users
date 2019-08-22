@@ -1,0 +1,63 @@
+---
+admin_group: admin
+sudo_group: sudo
+deployer_group: deployer
+
+users:
+
+  - username: mattia2
+    comment: "Mattia Martinello"
+    group: admin
+    password: "$6$uuif9EUAq$6kC.PlOTSy2v.rQKR6UHnVrmmTBrq3mKChsxQcAap8LTg9zDlnnplCksb.TheXQe.6MgTD8iNkT/9aFbl.hdD/"
+    keys:
+      active:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCbdEXGz85lmQ6S2oNKLnb0MKAu/V7oRaOvNjxnIGf9Z0hsJVxJmhZ6cwKyavnuq4KUmcNujNkycGoDUdJX07cn05XtIw182ReqZ7emxycTudV+7MTH+dwUb+UGtYXHaSnWh27w+g4SN6nKWlXZzYq6NRPY2qxB2TIxuq5dxCVWfTG7zWb+BPqigo2jsTcKQIZuhqw7aWWt1IlwBAbw4rReSHfTakPd8x8MDKMMPziLKreYkbJ63vN7zqJ8D3WKEqM+scGI1saJb0QQAoS/lGc/NZNpfY2nlM24Howzcj2WgF2K4kzee72MNu7LM2EkOJWQrhxeloll8YqNRUsBbbhJ mattia@mattias-mbp.mps.local"
+    admin: yes
+
+  - username: luca
+    comment: "Luca Dall'Osto"
+    group: users
+    groups: deployer
+    keys:
+      active:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0CGa4CI7w60umLRVGwGV7KX5T1Az9+Qf9KcdV5XxSzjMAL9y/W5/KqWYZZbFtYP8FCJ0GvUXIcx8LCi51F6G4aBbk+SdW6T/bM6a+SIqchsQkem1zIXw4RTuV9G7JR0u2C4Gy7NImmiPTADwW1MvgKnoSiWhsXdd/uHHH0V2SIN8RIkWPdMgzd20e40H9MY8qJqGmp9OPAUcZX4lZ/CMyBlVX9aSWOcCUbUsV/LGZyoK/kMKj7Ri1hSNgOFFswhATXqfkQVLaexlJzhq91dkX/nQLZzc4QCFqbtjCa+hstlwbkjM49O1NU9ubDT3vxHjND81jijT0SJbKbIMZA5s3 you@homestead"
+    hosts:
+      deployer:
+        - staging3.dc.ems.network
+  
+  - username: lorenza
+    comment: "Lorenza Romano"
+    group: users
+    groups: deployer
+    keys:
+      active:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDK6q47WH8seb4dwid7n9itMeExZDV+iGXj4IdRl3n+byB9o5jc3RmBiPx+TOkJHLsQm3KMoqJS/C7aNzXSqGCGwowqzx3P+xYWD4pBd/l4z7S4vq1dI60YsWAhqkeeDQZnLC1eVN74r1O2b7jIQyU+3dlJmASYhIc1pFG7TFv5mXHcVuE5LvGq7kSSbgsdRE4+HL3qjGo667dRGzFNeB968j4UQhvFNzQvKPlrj7syAbkSN4At4UjZr0JI1vNGjlxKzocwdW/o0cgL/Nnw5Y4mt+bktUnlBjoF6zwYxz44fUT+RGjSyNaR0zzCm1T+Hiq3rD70Nx27t1jBtG85dQZt lorenza@Lorenzas-MacBook-Pro.local"
+    hosts:
+      deployer:
+        - staging-linux
+
+#  - username: clara
+#    comment: "Clara Pena"
+#    group: users
+#    groups: deployer
+#    keys:
+#      active:
+#        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDHmKUeAo2j1xaMZs/uLQsY44WTQliKzBlCZtrkQnZIlvoW3+B0UDDdaugkFThBo4i2/HBWS81c4Bc79UkFm4qUHxTfh4PJJX+xe4IJg2fKIsYOiXPuUMUxsQNRSfO21k3eAP6Jl9Sc6L9em1GzHeKs9FzNjJyRhVR9v8sk7SdcPwvC0NDXx+rAr18lE2RopYypejg8uePPqU0v/gDLHOh08GvlALPlrmQW9+jV7z56pvU+UUNp6qA/SCXwHnz1cjfs4VUz6m+Sf3xyyAzUaVnNgnQGVlL730CCE4O3YS9fQ1U5X2SlXPitb8hdrxD2vR9qox/53UGLu65GFaURoAMlulYRY/R5HtRAn/RDPVSteeydMH2jrav6v0EKIw2HMyEY9zhrr2S+MIQCXnombq10ynAXDfLkK3H2dQz+uq31PjIbF3q3y+BiJaxBVQq45eyAxgC64UilmbztSnYD02rRrXyUqmBDs+AbYidTTOlxjWsmYI5B7cHagaua0rxjPzQVxVoF7zrDP7c9c8r38tCjwCTLWAR71/CT+YrG0czZRGYU62zjoCtggucFnjmQ1p9YVnJ20j+Bvpny4gnS1OdrZzChpHbX20vcLHTvDz0UGntA4TjDTC/Dhh8meI02s28wQOQqajkIP4iwHsH1hnYsblp9xYpxY8yKscnyh0e92Q== clara.pena@euregio.company"
+  
+#  - username: gabriele
+#    comment: "Gabriele Murara"
+#    group: users
+#    groups: deployer
+#    keys:
+#      active:
+#        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCX/L78JEAQDZWlwcE7FPVgY7DlYfBDwnWbPRGQpXlQhIcDkdgsqq2omZinWdtxSm4DseV03p/PEkLsBGxqkPXJjfitxJGgb4cfoWaZygYZI4Vm80c9jnRiE1JYaxoE6nHpjSVUNGHudmdZiYQuqGTnGoziqYZnvUe8NRNbYhzhIKEupGBYkMBzy5lxovQkQoU0I9Tn5qBhnvs7ekCHqFSCB/ZijxHPa3SxwAWHrDoTL9BfanHOGzCq4wDRRik8AXty00SBTOzD0n2uh+N9Fi1Yzm2VJihajbY3Yodhc/z9cV/lIU0SLE/Z1IinR2db62hmLvHN8DU6dg5L6gHXgiVp gabriele@dell-gabriele"
+  
+  - username: daniele
+    comment: "Daniele Zanotelli"
+    group: admin
+    keys:
+      active:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8NPYJul9nPWMh/3tnIZXSz7a+564/ZaEPEuUNcgOnIewW8dp3Gmffk+baLd5N+baI0kWPsGygSbySUSX8FR5Ag0qv58WPsJ5q3DNlqN50leInjWtK508n8bM4isIQb/2Mdt5alIPkiw09LUuXAKN8CqL3AGLCKAXH5jGuk02NB7yEymZn3zxirsH8sxidN5EpnaKlBGx2Kq04KnSzKdA2FlGLVmTv8Of+Qllet/UpAG8SZMvcsdApwGSqJ+SBmIeUIZdHw00XGUh57Y49sm0dIFX3DsHWN1/dWI9Rv6riAjlxHL7YQFvSaCmsCp2Dl3PlTCAxRhyIAZjaV/bIbg/X zano@darkduck"
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYJzE78QwY2i6sbzKegxf0xJLFCgyQevwvVdYaOGtW0Vm9ywdHPTHgol6QPm0Yt40H3V5M9s1tKQdUelo+uYvWdmw/RuL/yq1l0p+r4ek59UAFAV7R+DcOVJFodnnZ46GoCkDTM/v2vRAdN8Me34yigudXkC78Qk+/xlXjPglLJqqhQ1eyV1CTxP+oCgGEGYd0rJlHWks57ZKgC6ueocW6FtJnZCwMo3uKcnPjuZjX2POGM2UnuqeGGXMVRGIYlbxTA4qFD/lvjdfpXqpyJdj0+UK3HlN1bJSjJCQlz2veAxHTuW6baJgpnE9VXgGELPvFc1k99aFmCUHvVmmVc0xF zano@storm"
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClPjhkxgvimtoyXPSnUU3AMLPubBNSkjtofHY3dr6bVzkPQ2AbFmDbRNR5XtHaylTTs9iurIM8uzUYT7uG85M5thiX+YFZIn9bTa0lTQOjarwsMjWmtYF7hez2bR6Q0DftML76V+fv/gip5DrRdsCT+i1OZcw6Sd949hgQzHDvrAaRRcJZFP2jpF033F2kEE71Iyiu4SUvjO/9+mHxSrugESWjvMueUzvlf2C9eo4a47lDgt17ZuOj8sAluHfFI3nHl2lHASrCxlIvQNiV3UpjggYMJhKiCu6M963czRsYORuYN28j2Wlfil2V1oE+9BQJgK62RxqVeuYE34Hw45h1 zano@tornado"
+    admin: yes
