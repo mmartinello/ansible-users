@@ -1,0 +1,5 @@
+---
+- name: Create or remove the admin group
+  group:
+    name: "{{ superadmin_group }}"
+    state: present

@@ -1,0 +1,10 @@
+---
+- include_tasks: install.yml
+
+- include_tasks: admin.yml
+
+#- include_tasks: users.yml
+
+#- include_tasks: deployer.yml
+
+# - name: Remove user from deployer group
