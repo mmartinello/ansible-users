@@ -1,6 +1,6 @@
 # BEGIN ANSIBLE MANAGED BLOCK
 
 # Allow members of the superadmin group to execute any command
-{{ superadmin_group }} ALL=(ALL:ALL) {% if superadmin_ask_pass == false %} NOPASSWD: {% endif %} ALL
+%{{ superadmin_group }} ALL=(ALL:ALL) {% if superadmin_ask_pass == false %} NOPASSWD: {% endif %} ALL
 
 # END ANSIBLE MANAGED BLOCK
