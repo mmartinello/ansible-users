@@ -1,6 +1,5 @@
-mmartinello.users
-Ansible Users Manager Role
-==========================
+mmartinello.users - Ansible Users Manager Role
+==============================================
 
 Ansible role which let to easily manage users and their access to Linux servers.
 
