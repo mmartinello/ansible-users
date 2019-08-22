@@ -1,0 +1,88 @@
+---
+- name: Create or remove users
+  user:
+    name: "{{ item.username }}"
+    comment: "{{ item.comment | default('User {{item.username}}') }}"
+    password: "{{ item.password | default('!') }}"
+    state: "{{ item.state | default('present') }}"
+    shell: "{{ item.shell | default('/bin/bash') }}"
+    group: "{{ item.group | default(users_default_group) }}"
+  with_items: '{{ users }}'
+  when: >
+    item.username is defined and (
+      (item.superadmin is defined and item.superadmin == True)
+      or (
+        item.hosts is defined and (
+          inventory_hostname|in_dict_multilist(item.hosts)
+          or group_names|in_dict_multilist(item.hosts)
+        )
+      )
+    )
+
+- name: Remove not assigned users
+  user: name={{ item.username }} state=absent
+  with_items: '{{ users }}'
+  when: >
+    item.username is defined and (
+      (
+        item.superadmin is not defined
+        or (
+          item.superadmin is defined and item.superadmin != True
+        )
+      )
+      and (
+        item.hosts is not defined
+        or (
+          item.hosts is defined and
+          inventory_hostname|in_dict_multilist(item.hosts) == False
+          and group_names|in_dict_multilist(item.hosts) == False
+        )
+      )
+    )
+
+- name: Add SSH-keys to users
+  authorized_key:
+    user: "{{ item.0.username }}"
+    key: "{{ item.1 }}"
+  with_subelements:
+    - "{{ users }}"
+    - keys.active
+    - flags:
+      skip_missing: True
+  when: >
+    item.0.username is defined and (
+      item.0.state is not defined or item.0.state != "absent"
+    )
+    and (
+      (item.0.superadmin is defined and item.0.superadmin == True)
+      or (
+        item.hosts is defined and (
+          inventory_hostname|in_dict_multilist(item.hosts)
+          or group_names|in_dict_multilist(item.hosts)
+        )
+      )
+    )
+
+- name: Remove disabled SSH-keys from active users
+  authorized_key:
+    user: "{{ item.0.username }}"
+    key: "{{ item.1 }}"
+    state: absent
+  with_subelements:
+    - "{{ users }}"
+    - keys.disabled
+    - flags:
+      skip_missing: True
+  when: >
+    item.username is defined and (
+      item.0.state is not defined or item.0.state != "absent"
+    )
+    and (
+      (item.0.admin is defined and item.0.admin == True)
+      or (
+        item.hosts is defined and (
+          inventory_hostname|in_dict_multilist(item.hosts)
+          or group_names|in_dict_multilist(item.hosts)
+        )
+      )
+    )

@@ -1,11 +1,11 @@
 ---
-- include_tasks: sudo.yml
+- include_tasks: setup.yml
 
-- include_tasks: superadmin.yml
+- include_tasks: groups.yml
 
-# - include_tasks: admin.yml
+- include_tasks: users.yml
 
-# - include_tasks: users.yml
+# - include_tasks: user_groups.yml
 
 # - include_tasks: deployer.yml
 

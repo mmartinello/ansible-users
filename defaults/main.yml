@@ -16,3 +16,9 @@ deployer_group: deployer
 
 # Ask sudo password to become deployer (default: true)
 deployer_become_ask_pass: true
+
+# Users' default group
+users_default_group: users
+
+# User list
+users: {}

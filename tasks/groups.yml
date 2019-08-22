@@ -9,3 +9,14 @@
     src: sudoers-superadmin.j2
     dest: /etc/sudoers.d/superadmin
     validate: /usr/sbin/visudo -cf %s
+
+- name: Create or remove the admin group
+  group:
+    name: "{{ admin_group }}"
+    state: present
+
+- name: Configure sudo for the admin group
+  template:
+    src: sudoers-admin.j2
+    dest: /etc/sudoers.d/admin
+    validate: /usr/sbin/visudo -cf %s
