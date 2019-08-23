@@ -21,4 +21,4 @@ deployer_become_ask_pass: true
 users_default_group: users
 
 # User list
-users: {}
+users: []
