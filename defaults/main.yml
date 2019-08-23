@@ -11,6 +11,9 @@ admin_group: sudo
 # Ask sudo password for admin users (default: true)
 admin_ask_pass: true
 
+# Enable the deployer group (default: false)
+deployer_enable: false
+
 # Deployer group name (default: deployer)
 deployer_group: deployer
 

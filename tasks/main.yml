@@ -7,6 +7,5 @@
 
 - include_tasks: user_groups.yml
 
-# - include_tasks: deployer.yml
-
-# - name: Remove user from deployer group
+- include_tasks: deployer.yml
+  when: deployer_enable == True

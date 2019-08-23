@@ -22,3 +22,9 @@
     dest: /etc/sudoers.d/admin
     mode: '0660'
     validate: /usr/sbin/visudo -cf %s
+
+- name: Create or remove the deployer group
+  group:
+    name: "{{ deployer_group }}"
+    state: present
+  when: deployer_enable == True

@@ -66,7 +66,7 @@
       )
     )
 
-- name: Add SSH-keys to users
+- name: Add SSH-keys to users AAA
   authorized_key:
     user: "{{ item.0.username }}"
     key: "{{ item.1 }}"
@@ -82,9 +82,9 @@
     and (
       (item.0.superadmin is defined and item.0.superadmin == True)
       or (
-        item.hosts is defined and (
-          inventory_hostname|in_dict_multilist(item.hosts)
-          or group_names|in_dict_multilist(item.hosts)
+        item.0.hosts is defined and (
+          inventory_hostname|in_dict_multilist(item.0.hosts)
+          or group_names|in_dict_multilist(item.0.hosts)
         )
       )
     )
@@ -106,9 +106,9 @@
     and (
       (item.0.superadmin is defined and item.0.superadmin == True)
       or (
-        item.hosts is defined and (
-          inventory_hostname|in_dict_multilist(item.hosts)
-          or group_names|in_dict_multilist(item.hosts)
+        item.0.hosts is defined and (
+          inventory_hostname|in_dict_multilist(item.0.hosts)
+          or group_names|in_dict_multilist(item.0.hosts)
         )
       )
     )

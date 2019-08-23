@@ -1,0 +1,7 @@
+# BEGIN ANSIBLE MANAGED BLOCK
+
+# Allow members of the admin group to execute any command
+Cmnd_Alias BECOME_DEPLOYER = /bin/su deployer
+%deployer ALL=(ALL:ALL) {% if admin_ask_pass == false %} NOPASSWD: {% endif %} BECOME_DEPLOYER
+
+# END ANSIBLE MANAGED BLOCK

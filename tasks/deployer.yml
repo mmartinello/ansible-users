@@ -1,0 +1,22 @@
+---
+- name: Configure sudo for the deployer group
+  template:
+    dest: /etc/sudoers.d/deployer
+    src: sudoers-deployer.j2
+    mode: '0660'
+    validate: /usr/sbin/visudo -cf %s
+
+- name: Add users to the deployer group
+  user: name={{ item.username }} groups={{ deployer_group }} append=yes
+  with_items: '{{ users }}'
+  when: >
+    item.username is defined
+    and (item.state is not defined or item.state == "present")
+    and (
+      item.hosts is defined and (
+        item.hosts.deployer is defined and (
+          inventory_hostname|in_list(item.hosts.deployer)
+          or group_names|in_list(item.hosts.deployer)
+        )
+      )
+    )
