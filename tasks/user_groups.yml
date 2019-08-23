@@ -1,0 +1,27 @@
+---
+- name: Add superadmins to the superadmin group
+  user: name={{ item.username }} groups={{ superadmin_group }} append=yes
+  with_items: '{{ users }}'
+  when: >
+    item.username is defined and
+    (
+      item.state is not defined or item.state != "absent"
+    )
+    and item.superadmin is defined
+    and item.superadmin == True
+
+- name: Add users to the local admin group
+  user: name={{ item.username }} groups={{ admin_group }} append=yes
+  with_items: '{{ users }}'
+  when: >
+    item.username is defined
+    and (item.state is not defined or item.state == "present")
+    and (item.superadmin is not defined or item.superadmin != True)
+    and (
+      item.hosts is defined and (
+        item.hosts.admin is defined and (
+          inventory_hostname|in_list(item.hosts.admin)
+          or group_names|in_list(item.hosts.admin)
+        )
+      )
+    )
