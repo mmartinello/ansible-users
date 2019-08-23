@@ -1,5 +1,8 @@
 ---
-- name: Create or remove users
+# Create the user if:
+# - is present and hosts is empty or undefined
+# - is present and current node is in hosts
+- name: Create users
   user:
     name: "{{ item.username }}"
     comment: "{{ item.comment | default('User {{item.username}}') }}"
@@ -9,34 +12,57 @@
     group: "{{ item.group | default(users_default_group) }}"
   with_items: '{{ users }}'
   when: >
-    item.username is defined and (
-      (item.superadmin is defined and item.superadmin == True)
-      or (
-        item.hosts is defined and (
+    item.username is defined
+    and
+    (
+      item.state is not defined or item.state != "absent"
+    )
+    and
+    (
+      (
+        item.hosts is not defined
+        or item.hosts == ""
+        or item.hosts == []
+        or item.hosts == {}
+      )
+      or
+      (
+        item.hosts is defined
+        and
+        (
           inventory_hostname|in_dict_multilist(item.hosts)
           or group_names|in_dict_multilist(item.hosts)
         )
       )
     )
 
-- name: Remove not assigned users
+# Remove the user if:
+# - is absent and hosts is empty
+# - is not absent and hosts is not empty and current node is not in hosts
+- name: Remove users
   user: name={{ item.username }} state=absent
   with_items: '{{ users }}'
   when: >
-    item.username is defined and (
+    item.username is defined and
+    (
       (
-        item.superadmin is not defined
-        or (
-          item.superadmin is defined and item.superadmin != True
+        item.state is defined and item.state == "absent" and
+        (
+          item.hosts is not defined
+          or item.hosts == ""
+          or item.hosts == []
+          or item.hosts == {}
+          or inventory_hostname in item.hosts
+          or group_names in item.hosts
         )
       )
-      and (
-        item.hosts is not defined
-        or (
-          item.hosts is defined and
-          inventory_hostname|in_dict_multilist(item.hosts) == False
-          and group_names|in_dict_multilist(item.hosts) == False
-        )
+      or
+      (
+        (item.state is not defined or item.state != "absent")
+        and item.hosts is defined
+        and item.hosts != "" and item.hosts != [] and item.hosts != {}
+        and inventory_hostname|in_dict_multilist(item.hosts) == False
+        and group_names|in_dict_multilist(item.hosts) == False
       )
     )
 
@@ -74,11 +100,11 @@
     - flags:
       skip_missing: True
   when: >
-    item.username is defined and (
+    item.0.username is defined and (
       item.0.state is not defined or item.0.state != "absent"
     )
     and (
-      (item.0.admin is defined and item.0.admin == True)
+      (item.0.superadmin is defined and item.0.superadmin == True)
       or (
         item.hosts is defined and (
           inventory_hostname|in_dict_multilist(item.hosts)
