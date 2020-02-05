@@ -2,4 +2,9 @@
 - name: Install sudo
   package: name=sudo state=present
 
-- 
+- name: Ensure files in sudoers.d are included in main sudo configuration file
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^#includedir /etc/sudoers.d'
+    line: '#includedir /etc/sudoers.d'

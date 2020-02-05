@@ -36,6 +36,30 @@ deployer_group: deployer
 
 # Ask sudo password to become deployer (default: true)
 deployer_become_ask_pass: true
+
+# Users' default group
+users_default_group: users
+
+# User list
+users: []
+```
+
+Users list examples
+-------------------
+
+Admin user: has root access on every server
+
+```yaml
+users:
+  - username: jdoe
+    comment: "John Doe"
+    group: admin
+    password: "$6..."
+    keys:
+      active:
+        - "ssh-rsa ... jdoe@host.local"
+    admin: yes
+
 ```
 
 Dependencies
